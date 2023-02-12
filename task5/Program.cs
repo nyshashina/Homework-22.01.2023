@@ -20,9 +20,33 @@ for(int i = 0; i < numberK; i++)
     string[] pinnumbers = pinnumber.Split(' ');
     for(int j = 0; j < pins.Length; j++)
     {
-        if(pins[j] == pinnumbers[0] || pins[j] == pinnumbers[1])
+        if(pinnumbers[0] == pinnumbers[1] && pins[j] == pinnumbers[0])
         {
             pins[j] = ".";
+        }
+        else if(pinnumbers[0] != pinnumbers[1] && pins[j] == pinnumbers[0])
+        {
+            int temp1 = j;
+            int temp2 = 0;
+            for(int k = j + 1; k < pins.Length; k++)
+            {
+                if(pins[k] == pinnumbers[1])
+                {
+                    temp2 = k;
+                }
+                for(int l = temp1; l <= temp2; l++)
+                {
+                    pins[l] = ".";
+                }
+            }
+        }
+        else if(pinnumbers[0] != pinnumbers[1] && pins[j] == pinnumbers[1])
+        {
+            while(pins[j] != ".")
+            {
+                pins[j] = ".";
+                j = j - 1;
+            }
         }
     }
 }
